@@ -1,0 +1,8 @@
+.main {
+    width: 500px;
+    height: 500px;
+    background-color: lightblue;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
