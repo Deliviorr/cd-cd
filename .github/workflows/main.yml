@@ -1,1 +1,31 @@
+name: Azure app service deploy
+
+on:
+    push:
+        branches:
+            - main
+
+jobs: 
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source
+              uses: actions/checkout@v3
+            - name: Setup Node.js version
+              uses: actions/setup-node@v5
+              with: 
+                node-version: '2.0.x'
+            - name: Install dependencies
+              run: 
+                npm install
+                npm install express
+            - name: deploy to Azure App Service
+              uses: azure/webapps-deploy@v2
+              with:
+                app-name: deliviotest
+                publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+                package: .
+
+                  
+
 
