@@ -1,4 +1,5 @@
 const express = require('express');
+const router = require('./routes/router')
 // const db = require('./database/connection')
 const app = express();
 
@@ -17,18 +18,8 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get('/getCV', async (req, res) => {
-  res.json({ cv : 1})
-  // try {
-  //   const result = await db.query(`SELECT * FROM cv`);
-  //   res.json(result.rows);
-
-  // } catch (err){
-  //   console.error(err);
-  //   res.status(500).send('Database query gefaald')
-  // }
-});
-
 app.listen(PORT, () =>{
     console.log(`http://localhost:${PORT}`)
 });
+
+app.use(router)
