@@ -20,6 +20,8 @@ jobs:
                 npm install
                 npm install express
                 npm install ejs
+                npm install dotenv
+                npm install pg
             - name: deploy to Azure App Service
               uses: azure/webapps-deploy@v2
               with:

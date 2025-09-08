@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./database/connection')
+// const db = require('./database/connection')
 const app = express();
 
 //env importen
@@ -18,14 +18,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/getCV', async (req, res) => {
-  try {
-    const result = await db.query(`SELECT * FROM cv`);
-    res.json(result.rows);
+  res.json({ cv : 1})
+  // try {
+  //   const result = await db.query(`SELECT * FROM cv`);
+  //   res.json(result.rows);
 
-  } catch (err){
-    console.error(err);
-    res.status(500).send('Database query gefaald')
-  }
+  // } catch (err){
+  //   console.error(err);
+  //   res.status(500).send('Database query gefaald')
+  // }
 });
 
 app.listen(PORT, () =>{
