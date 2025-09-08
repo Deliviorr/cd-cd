@@ -1,17 +1,33 @@
 const express = require('express');
+const db = require('./database/connection')
 const app = express();
-const port = 8080;
 
-app.use(express.json()); 
-app.use(express.static('public'));
+//env importen
+const dotenv = require('dotenv');
+dotenv.config();
 
-app.set('view engine', 'ejs');
+const PORT = process.env.PORT;
 
+app.use(express.json()); // json parsen
+app.use(express.static('public')); //static folder maken
 
-app.get('/home', (req, res) => {
+app.set('view engine', 'ejs'); 
+
+app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.listen(port, () =>{
-    console.log("http://localhost:8080")
+app.get('/getCV', async (req, res) => {
+  try {
+    const result = await db.query(`SELECT * FROM cv`);
+    res.json(result.rows);
+
+  } catch (err){
+    console.error(err);
+    res.status(500).send('Database query gefaald')
+  }
+});
+
+app.listen(PORT, () =>{
+    console.log(`http://localhost:${PORT}`)
 });
