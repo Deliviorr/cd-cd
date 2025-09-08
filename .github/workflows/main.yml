@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Source
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Setup Node.js version
               uses: actions/setup-node@v5
               with: 
@@ -19,6 +19,7 @@ jobs:
               run: 
                 npm install
                 npm install express
+                npm install ejs
             - name: deploy to Azure App Service
               uses: azure/webapps-deploy@v2
               with:
